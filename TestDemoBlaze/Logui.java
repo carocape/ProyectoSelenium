@@ -1,15 +1,10 @@
 package TestDemoBlaze;
 
-
 import java.io.File;
-import java.io.IOException;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -17,14 +12,10 @@ import org.testng.annotations.Test;
 import PaginaDemoBlaze.HomeDemoBlaze;
 
 
-public class Monitores {
+public class Logui {
+
 	String url = "https://www.demoblaze.com/index.html";
 	WebDriver driver;
-	
-	File pantalla;
-	String rutaEvidencias = "..\\01\\Evidencias\\";
-	String nombreDocumento = "Evidencias PracticaAutomatizacion.docx";
-	String nombreImagenGenerica = "img.jpg";
 	
 	@BeforeSuite
 	public void abrirNavegador() {
@@ -40,28 +31,20 @@ public class Monitores {
 		driver.manage().deleteAllCookies();
 		
 	}
-
+	
+	
 	@Test
-
-	public void Home() throws InvalidFormatException, IOException, InterruptedException {
-		HomeDemoBlaze navegar = new HomeDemoBlaze(driver);
-				
-		navegar.IrMonitores();
-		//Thread.sleep(2000);
+	//Test de Logueo a DemoBlaze
+	public void RealizarInscripcion() throws InterruptedException {
+		HomeDemoBlaze logui = new HomeDemoBlaze(driver);
+	
+		logui.IrLogui();
+		Thread.sleep(2000);
+		logui.IngresarUsuario();
 	}
-		
 		
 	@AfterSuite
 	public void cerrarNavegador() {
-		driver.close();
+	//driver.close();
 	}
-		
-		
-	
-	
-
 }
-
-
-
-

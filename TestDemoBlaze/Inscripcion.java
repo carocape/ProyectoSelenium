@@ -1,30 +1,23 @@
 package TestDemoBlaze;
 
-
 import java.io.File;
-import java.io.IOException;
+import java.time.Duration;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import PaginaDemoBlaze.HomeDemoBlaze;
 
-
-public class Monitores {
+public class Inscripcion {
 	String url = "https://www.demoblaze.com/index.html";
 	WebDriver driver;
-	
-	File pantalla;
-	String rutaEvidencias = "..\\01\\Evidencias\\";
-	String nombreDocumento = "Evidencias PracticaAutomatizacion.docx";
-	String nombreImagenGenerica = "img.jpg";
 	
 	@BeforeSuite
 	public void abrirNavegador() {
@@ -40,28 +33,32 @@ public class Monitores {
 		driver.manage().deleteAllCookies();
 		
 	}
-
+	
+	
 	@Test
-
-	public void Home() throws InvalidFormatException, IOException, InterruptedException {
-		HomeDemoBlaze navegar = new HomeDemoBlaze(driver);
-				
-		navegar.IrMonitores();
-		//Thread.sleep(2000);
+	//Test de Logueo a DemoBlaze
+	public void RealizarInscripcion() throws InterruptedException {
+		HomeDemoBlaze inscribir = new HomeDemoBlaze(driver);
+	
+		inscribir.IrAcceso();
+		Thread.sleep(2000);
+		inscribir.InscribirUsuario();
+		
+		//Una espera, hasta que la alerta esté presente
+		WebDriverWait myWait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		myWait.until(ExpectedConditions.alertIsPresent());
+		
+		Alert alert = driver.switchTo().alert();
+		String mensaje= alert.getText();
+		alert.accept();
+	
+		System. out. println("Mensaje Alerta: "+mensaje);
+		
 	}
-		
-		
+	
 	@AfterSuite
 	public void cerrarNavegador() {
-		driver.close();
+	driver.close();
 	}
-		
-		
-	
-	
 
 }
-
-
-
-
