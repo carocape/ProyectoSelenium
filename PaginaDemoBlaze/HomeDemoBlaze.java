@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class HomeDemoBlaze {
 	// Atributos => Elementos Web
 	
@@ -22,11 +23,11 @@ public class HomeDemoBlaze {
 	@FindBy(css="nav.navbar.navbar-toggleable-md.bg-inverse:nth-child(5) div.navbar-collapse ul.navbar-nav.ml-auto li.nav-item:nth-child(4) a.nav-link font:nth-child(1) > font:nth-child(1)")
 	WebElement linkCarro;
 	
-	@FindBy(css="nav.navbar.navbar-toggleable-md.bg-inverse:nth-child(5) div.navbar-collapse ul.navbar-nav.ml-auto li.nav-item:nth-child(5) a.nav-link font:nth-child(1) > font:nth-child(1)")
-	WebElement linkAcceso;
+	@FindBy(css="#signin2")
+	WebElement linkInscribir;
 	
 	@FindBy(css="#login2")
-	WebElement linkInscribite;
+	WebElement linkLogui;
 	
 	@FindBy(css="div.container:nth-child(6) div.row div.col-lg-3 div.list-group a.list-group-item:nth-child(2) font:nth-child(1) > font:nth-child(1)")
 	WebElement categoriaTelefonos;	
@@ -39,6 +40,41 @@ public class HomeDemoBlaze {
 	
 	@FindBy(css="body:nth-child(2) nav.navbar.navbar-toggleable-md.bg-inverse:nth-child(5) a.navbar-brand font:nth-child(2) > font:nth-child(1)")
 	WebElement linkTienda;
+	
+	@FindBy(xpath="//body/div[@id='logInModal']/div[1]/div[1]/div[3]/button[1]")
+	WebElement btnCancelarAlerta;
+	
+	///Del Div para Logearse
+	@FindBy(id="loginusername")
+	WebElement txtLoginName;
+	@FindBy(id="loginpassword")
+	WebElement txtClave;
+	@FindBy(xpath="//button[contains(text(),'Log in')]")
+	WebElement btnAceptar;
+	
+	///Del Div para Registrarse
+	@FindBy(id="sign-username")
+	WebElement txtUsuario;
+	@FindBy(id="sign-password")
+	WebElement txtClaveRegistro;
+	@FindBy(xpath="//button[contains(text(),'Sign up')]")
+	WebElement btnAceptarRegistro;
+	
+	///Del Div para Contactarse
+	@FindBy(id="recipient-email")
+	WebElement txtEmail;
+	
+	@FindBy(id="recipient-name")
+	WebElement txtNombreContacto;
+	
+	@FindBy(id="message-text")
+	WebElement txtMensaje;
+	
+	@FindBy(css="body.modal-open:nth-child(2) div.modal.fade.show:nth-child(1) div.modal-dialog div.modal-content div.modal-footer > button.btn.btn-primary:nth-child(2)")
+	WebElement btnEnviarMensaje;
+	
+	@FindBy(id="message-text")
+	WebElement btnCerrarMensaje;
 	
 	
 	// Constructor
@@ -61,10 +97,11 @@ public class HomeDemoBlaze {
 				linkCarro.click();
 				}
 			public void IrAcceso() {
-				linkAcceso.click();
+				linkInscribir.click();
 				}
-			public void IrInscribite() {
-				linkInscribite.click();
+			public void IrLogui() {
+				linkLogui.click();
+				
 				}
 			public void IrNosotros() {
 				linkNosotros.click();
@@ -81,5 +118,31 @@ public class HomeDemoBlaze {
 			public void IrTienda() {
 				linkTienda.click();
 				}
+			public void CancelarAlerta() {
+				btnCancelarAlerta.click();
+				}
+			
+			public void IngresarUsuario() {
+				txtLoginName.sendKeys("RobertoFeo");
+				txtClave.sendKeys("hhh123");
+				btnAceptar.click();
+			}
+			
+			public void InscribirUsuario() {
+				txtUsuario.sendKeys("RobertoFeo");
+				txtClaveRegistro.sendKeys("hhh123");
+				btnAceptarRegistro.click();
+			}
+			
+			public void EnviarMensajeContacto() {
+				txtEmail.sendKeys("RobertoFeo@gmail.com");
+				txtNombreContacto.sendKeys("Roberto");
+				txtMensaje.sendKeys("Quiero conocer precios mayoristas");
+				btnEnviarMensaje.click();
+			}
+			public void CerrarMensajeContacto() {
+				btnCerrarMensaje.click();
+			}
+			
 			
 }
